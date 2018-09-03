@@ -22,7 +22,7 @@
             <a href="/user/register">注册</a>
         </form>
         <!-- 显示错误信息-->
-        <c:if test="${errorMsg!=null}">${errorMag}</c:if>
+        <c:if test="${errorMsg!=null}">${errorMsg}</c:if>
         <!-- 显示提示-->
         <c:if test="${noticeMsg!=null}">${noticeMsg}</c:if>
 

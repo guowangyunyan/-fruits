@@ -34,6 +34,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String toLogin() {
         logger.info("调用 toLogin 接口");
+        //跳转到登录页面
         return "login";
     }
 
@@ -46,12 +47,16 @@ public class UserController extends BaseController {
      * @date 2018/8/31 9:26
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @ResponseBody
-    public String login(UserModel userModel) {
+    public String login(UserModel userModel, Model model) {
         logger.info("调用 login 接口");
-        userService.login();
-        return "redirect" +
-                ": /retailer/list";
+        Map<String, String> map = new HashMap<>();
+
+        List<UserModel> userModelList = userService.login();
+        if (userModelList != null && userModelList.size() > 0) {
+            return "redirect:retailer/list";
+        }
+        model.addAttribute("errorMsg", "登录失败!账号或密码错误!");
+        return "login";
     }
 
     /**
