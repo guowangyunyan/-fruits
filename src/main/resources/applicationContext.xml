@@ -16,6 +16,12 @@
     <!-- 引入数据库配置文件 -->
     <context:property-placeholder location="classpath:jdbc.properties"/>
 
+    <!--  base-package 注解所在的包根据自己的需要划分注解类使用的范围  -->
+    <context:component-scan base-package="com"/>
+
+
+
+
     <!-- 连接池 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
